@@ -35,4 +35,14 @@ class Release {
       return implode("/", [$this->project, $this->environment, $platform, $this->buildNumber]);
     }, $this->platforms);
   }
+
+  public function getMissingProperties(): array {
+    $properties = array_keys(get_class_vars(get_class($this)));
+    return array_filter($properties, function ($prop) {
+      if (is_array($this->$prop)) {
+        return !isset($this->$prop) || empty(implode("", $this->$prop));
+      }
+      return !isset($this->$prop) || empty($this->$prop);
+    });
+  }
 }
