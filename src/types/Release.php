@@ -39,8 +39,10 @@ class Release {
   public function getMissingProperties(): array {
     $properties = array_keys(get_class_vars(get_class($this)));
     return array_filter($properties, function ($prop) {
-      if (is_array($this->$prop)) {
-        return !isset($this->$prop) || empty(implode("", $this->$prop));
+      if (isset($this->$prop)) {
+        if (is_array($this->$prop)) {
+          return empty(implode("", $this->$prop));
+        }
       }
       return !isset($this->$prop) || empty($this->$prop);
     });
