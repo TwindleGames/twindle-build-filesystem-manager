@@ -9,5 +9,5 @@ This utility may also be used to manage pruning old builds as well later on with
 To run tests run:
 
 ```sh
-./vendor/bin/phpunit
+./vendor/bin/phpunit test
 ```
