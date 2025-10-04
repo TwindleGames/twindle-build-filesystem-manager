@@ -8,35 +8,35 @@ class Release {
   /**
    * The project name
    */
-  public string $project;
+  public $project;
 
   /**
    * An array of platform names
    */
-  public array $platforms = ["web", "windows", "linux"];
+  public $platforms = ["web", "windows", "linux"];
 
   /**
    * The environment name
    */
-  public string $environment;
+  public $environment;
 
   /**
    * The build number
    */
-  public int $buildNumber;
+  public $buildNumber;
 
 
   /**
    * Generate paths to be created to deploy this release
    */
-  public function getDeployPaths(): array {
+  public function getDeployPaths() {
     $obj = $this;
     return array_map(function($platform) {
       return implode("/", [$this->project, $this->environment, $platform, $this->buildNumber]);
     }, $this->platforms);
   }
 
-  public function getMissingProperties(): array {
+  public function getMissingProperties() {
     $properties = array_keys(get_class_vars(get_class($this)));
     return array_filter($properties, function ($prop) {
       if (isset($this->$prop)) {
