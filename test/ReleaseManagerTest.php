@@ -2,19 +2,11 @@
 require_once(__DIR__."/../src/types/ReleaseGenerator.php");
 require_once(__DIR__."/../src/types/ReleaseManager.php");
 require_once(__DIR__."/../src/types/Release.php");
+require_once(__DIR__."/types/TestReleaseCommand.php");
 use PHPUnit\Framework\TestCase;
 use TwindleGames\ReleaseGenerator;
 use TwindleGames\ReleaseManager;
 use TwindleGames\Release;
-
-class TestReleaseCommand implements ReleaseGenerator {
-  public array $createdDirectories = [];
-  public string $baseDirectory;
-
-  public function createDirectory(string $dirname): void {
-    array_push($this->createdDirectories, $dirname);
-  }
-}
 
 final class ReleaseManagerTest extends TestCase {
   protected TestReleaseCommand $generator;
